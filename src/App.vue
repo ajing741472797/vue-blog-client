@@ -1,0 +1,68 @@
+<template>
+  <div id="app">
+    <Header id="header"></Header>
+    <div id="main">
+      <router-view/>
+    </div>
+   
+    <Footer id="footer"></Footer>
+  </div>
+</template>
+
+<script>
+import Header from './components/Header'
+import Footer from './components/Footer'
+
+export default {
+  name: 'App',
+  components:{
+    Header,
+    Footer
+  }
+}
+</script>
+
+<style lang='less'>
+html,body,#app{
+  height: 100%;
+}
+#app {
+  display: grid;
+  grid-template-columns: 12% auto 12%;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: "header header header"
+                       ".      main  ."
+                       "footer footer footer";
+
+  #header {
+    grid-area: header;
+    padding-left: 12%;
+    padding-right: 12%;
+  }
+
+  #main {
+    grid-area: main;
+    border: 1px solid red;
+    height: 200px;
+  }
+
+  #footer {
+    grid-area: footer;
+    padding-left: 12%;
+    padding-right: 12%;
+  }
+
+}
+
+@media (max-width: 768px) {
+  #app {
+    grid-template-columns: 10px auto 10px;
+
+    #header, #footer {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+}
+</style>
