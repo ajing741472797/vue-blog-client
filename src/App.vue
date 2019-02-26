@@ -42,7 +42,6 @@ html,body,#app{
 
   #main {
     grid-area: main;
-    border: 1px solid red;
     height: 200px;
   }
 
