@@ -41,7 +41,6 @@ export default {
 
   #main {
     grid-area: main;
-    height: 200px;
   }
 
   #footer {

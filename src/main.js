@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import Util from '@/helpers/util'
+import Util from '@/helpers/util'//自制的一个vue插件，使时间格式为 xx前
 import store from './store'
 Vue.use(Util)
 

@@ -6,7 +6,7 @@ export default {
       title: '',
       description: '',
       content: '',
-      atIndex: false
+      atIndex: true
     }
   },
 

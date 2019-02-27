@@ -1,7 +1,7 @@
 <template>
   <header :class="{login: isLogin, 'no-login': !isLogin}">
     <template v-if="!isLogin">
-      <h1>Let's share</h1>
+      <a href="/"><h1>Let's share</h1></a>
       <p>精品博客汇聚</p>
       <div class="btns">
         <router-link to="/login"><el-button >立即登录</el-button></router-link>
@@ -54,7 +54,8 @@ created(){
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang='less'>
+<style lang="less">
+
 @import "../assets/base.less";  
 
 header.no-login {
@@ -149,5 +150,5 @@ header.login {
 }
 
 
- 
+
 </style>
