@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <p>© xiedaimala.com 2018 wechat: xiedaimala01</p>
+    <p>© nxdzhong.com/resume 2018 wechat: ajing741472797</p>
   </footer>
 </template>
  
