@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+/*
 import Index from '@/pages/index/template.vue'
 import Register from '@/pages/Register/template.vue'
 import Login from '@/pages/Login/template.vue'
@@ -8,12 +9,12 @@ import Detail from '@/pages/Detail/template.vue'
 import My from '@/pages/My/template.vue'
 import User from '@/pages/User/template.vue'
 import Edit from '@/pages/Edit/template.vue'
-
-
+*/
+import store from '@/store'
 
 Vue.use(Router)
-
-export default new Router({
+/*
+const router =  new Router({
   routes: [
     {
       path: '/',
@@ -29,23 +30,92 @@ export default new Router({
     },
     {
       path: '/create',
-      component: Create
+      component: Create,
+      meta:{requiresAuth:true}
+
     },
     {
-      path: '/edit',
-      component: Edit
+      path: '/edit/:blogId',
+      component: Edit,
+      meta:{requiresAuth:true}
     },
     {
       path: '/my',
       component: My
     },
     {
-      path: '/user',
-      component: User
+      path: '/user/:userId',
+      component: User,
+      meta:{requiresAuth:true}
     },
     {
-      path: '/detail',
-      component: Detail
+      path: '/detail/:blogId',
+      component: Detail,
+      meta:{requiresAuth:true}
     }
   ]
 })
+*/
+//需要时引入，再懒加载
+const router =  new Router({
+  routes: [
+    {
+      path: '/',
+      component: () => import('@/pages/Index/template.vue')
+    },
+    {
+      path: '/login',
+      component: () => import('@/pages/Login/template.vue')
+    },
+    {
+      path: '/detail/:blogId',
+      component: () => import('@/pages/Detail/template.vue')
+    },
+    {
+      path: '/edit/:blogId',
+      component: () => import('@/pages/Edit/template.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/create',
+      component: () => import('@/pages/Create/template.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/user/:userId',
+      component: () => import('@/pages/User/template.vue')
+    },
+    {
+      path: '/my',
+      component: () => import('@/pages/My/template.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/register',
+      component: () => import('@/pages/Register/template.vue')
+    }
+  ]
+})
+
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    store.dispatch('checkLogin').then(isLogin=>{
+      if (!isLogin) {
+        next({
+          path: '/login',
+          query: { redirect: to.fullPath }
+        })
+      } else {
+        next()
+      }
+    })
+   
+  } else {
+    next() // make sure to always call next()!
+  }
+})
+
+export default router
