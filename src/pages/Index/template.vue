@@ -1,6 +1,6 @@
 <template>
   <div id="index">
-    <section class="blog-posts">
+    <section class="blog-posts" >
       <router-link class="item" v-for="blog in blogs" :key="blog.num" :to="`/detail/${blog.id}`">
         <figure class="avatar">
           <img :src="blog.user.avatar" :alt="blog.user.username">
@@ -14,7 +14,7 @@
       </router-link>
     </section>
     <section class="pagination">
-      <el-pagination layout="prev, pager, next" :total="total" :current-page="page" @current-change="handleCurrentChange"></el-pagination>
+      <el-pagination v-show="blogs&&blogs.length" layout="prev, pager, next" :total="total" :current-page="page" @current-change="handleCurrentChange"></el-pagination>
     </section>
   </div>
 </template>
