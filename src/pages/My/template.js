@@ -22,7 +22,10 @@ export default {
         this.page = res.page
         this.total = res.total
         this.blogs = res.data
+      
+         
       })
+      
   },
 
   methods: {

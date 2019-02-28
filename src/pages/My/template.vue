@@ -20,7 +20,7 @@
       </router-link>
     </section>
     <section class="pagination">
-      <el-pagination
+      <el-pagination v-show="blogs&&blogs.length"
         layout="prev, pager, next"
         :total="total"
         :current-page="page"
